@@ -412,7 +412,7 @@ section.step.active{display:block}
     var c = el('consent'); if(!checkField(c)){ c.focus(); return; }
     if(SCRIPT_URL.indexOf('PASTE_')===0){ showStatus('Email is not connected yet. Paste the Google Apps Script web app URL into SCRIPT_URL in this file.', true); return; }
     var btn = el('btnSubmit'); btn.disabled = true; btn.textContent = 'Sending...';
-    showStatus('Sending your details. Please wait.', false);
+    showStatus('Sending your details. Please wait.', true);
     var fields = {};
     groups.forEach(function(g){ g.fields.forEach(function(f){ fields[f[1]] = fmt(f[0], val(f[0])); }); });
     getPhotoPayload(function(photo){
@@ -422,7 +422,7 @@ section.step.active{display:block}
       function fail(detail){
         if(done) return; done = true; cleanup();
         btn.disabled = false; btn.textContent = 'Send details';
-        showStatus('Could not send.' + (detail ? ' ('+detail+')' : '') + ' Check your internet connection and try again. If it keeps failing, tell the marketing team.', true);
+        showStatus('Could not send.' + (detail ? ' ('+detail+')' : '') + ', true);
       }
       function onMsg(ev){
         if(!/googleusercontent\.com$|google\.com$/.test(ev.origin.replace(/^https?:\/\//,''))) return;
